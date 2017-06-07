@@ -1,29 +1,57 @@
 package com.dy;
 
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-/**
- * Created by dongyan on 06/06/17.
- */
+// need to add external lib courserajava and ojdbc6
+
 public class RegexMatches {
-    private static String REGEX = "a*b";
-    // aab foo aab foo ab foo b
-    private static String INPUT = "aabfooaabfooabfoob";
-    private static String REPLACE = "-";
+    private static final String REGEX = "dog";
+    private static String INPUT = "a dog and two dogs";
+//    private static Pattern pattern;
+//    private static Matcher matcher;
+    private static final String REPLACE = "cat";
 
-    public static void main(String[] args) {
-        Pattern p = Pattern.compile(REGEX);
-        // get a matcher object
-        Matcher m = p.matcher(INPUT);
-        StringBuffer sb = new StringBuffer();
-        while(m.find()) {
-            m.appendReplacement(sb, REPLACE);
-            System.out.println("sb=" + sb);
+    public void regexMatch1(){
+        // String to be scanned to find the pattern.
+        String test = "Today it is 40 degree!";
+        String patten = "(.*)\\b(\\d+)\\b(.*)";
+        patten = "(.*)(\\d+)(.*)";
+        Pattern r = Pattern.compile(patten);
+        Matcher m = r.matcher(test);
+
+//        if (m.find()){
+//            System.out.println("match is=" + m.group(0));
+//            System.out.println("match is=" + m.group(1));
+//            System.out.println("match is=" + m.group(2));
+//            System.out.println("match is=" + m.group(3));
+//        }else {
+//            System.out.println("no match!");
+//        }
+        while (m.find()){
+            System.out.println("match is=" + m.group(2));
         }
-        System.out.println("sb.tostring=" + sb.toString());
-        m.appendTail(sb);
+    }
 
-        System.out.println("sb2=" + sb);
-        System.out.println("sb.tostring=" + sb.toString());
+    public void replaceByRegex(){
+        Pattern p = Pattern.compile(REGEX);
+        Matcher m = p.matcher(INPUT);
+        INPUT = m.replaceAll(REPLACE);
+        System.out.println(INPUT);
+    }
+
+    public static void main( String args[] ) {
+//        RegexMatches run = new RegexMatches();
+//        // run.replaceByRegex();
+//        run.regexMatch1();
+
+        // int 0
+        // float 0.44444445
+        // double 0.4444444444444444
+//        int b = 4;
+//        float a = (float) 4 /9;
+//        double c = (double) 4 /9;
+//        int d = 4/9;
+//        System.out.println(d);
     }
 }
