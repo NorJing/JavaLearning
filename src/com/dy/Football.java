@@ -1,8 +1,5 @@
 package com.dy;
 
-import javafx.scene.effect.Light;
-import javafx.scene.shape.StrokeLineCap;
-
 /**
  * Created by dongyan on 07/06/17.
  */
@@ -27,10 +24,14 @@ public class Football implements Sports, Event {
         System.out.println("Game ends!");
     }
 
+    public void setUpTeam(String team){
+        System.out.println("Set up team=" + team);
+    }
     public static void main(String avg[]){
         Football football = new Football();
         football.setHomeTeam("East team");
         football.setVisitingTeam("West team");
+        football.setUpTeam("Middle team");
         football.gameStart();
         football.gameEnd();
     }
