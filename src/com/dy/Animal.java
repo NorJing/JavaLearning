@@ -25,6 +25,7 @@ public class Animal implements Comparable<Animal>{
     }
 
     public String toString(){
+        System.out.println("in animal!");
         String s = "Animal age=" + this.age;
         return s;
     }
