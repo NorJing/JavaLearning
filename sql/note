@@ -1,0 +1,83 @@
+-- https://www.tutorialspoint.com/sql
+-- https://www.tutorialspoint.com/plsql
+
+drop table customers;
+create table customers (
+  customers_id int primary key,
+  name VARCHAR2(255) not null,
+  age int,
+  address varchar2(255),
+  salary float
+);
+
+insert into customers (customers_id, name, age, address, salary) values (1, 'percy', 30, 'gate 1', 200.0);
+insert into customers (customers_id, name, age, address, salary) values (2, 'percy2', 20, 'gate 2', 1200.0);
+insert into customers (customers_id, name, age, address, salary) values (3, 'percy3', 40, 'gate 3', 20000.0);
+insert into customers (customers_id, name, age, address, salary) values (4, 'percy4', 70, 'gate 4', 900.0);
+insert into customers (customers_id, name, age, address, salary) values (5, 'percy5', 10, 'gate 5', 500.0);
+
+select * from customers;
+
+drop trigger display_salary_changes;
+
+SET SERVEROUTPUT ON
+CREATE OR REPLACE TRIGGER display_salary_changes
+BEFORE DELETE OR INSERT OR UPDATE ON customers
+FOR EACH ROW
+WHEN (NEW.customers_id > 0)
+DECLARE
+   sal_diff number;
+BEGIN
+   sal_diff := :NEW.salary  - :OLD.salary;
+   dbms_output.put_line('Old salary: ' || :OLD.salary);
+   dbms_output.put_line('New salary: ' || :NEW.salary);
+   dbms_output.put_line('Salary difference: ' || sal_diff);
+END;
+/
+
+INSERT INTO CUSTOMERS (customers_id,NAME,AGE,ADDRESS,SALARY)
+VALUES (9, 'Kriti', 22, 'HP', 7500.00 );
+
+UPDATE customers
+SET salary = salary + 500
+WHERE customers_id = 2;
+
+dbms_output.put_line('Tables in the database:');
+
+SET SERVEROUTPUT ON
+BEGIN
+ Dbms_Output.Put_Line(Systimestamp);
+END;
+/
+
+SELECT * FROM CUSTOMERS order by name desc;
+
+SELECT * FROM CUSTOMERS order by salary;
+
+select name, sum(salary) from customers group by name;
+
+SELECT DISTINCT SALARY FROM CUSTOMERS ORDER BY SALARY;
+
+drop index customers_name_index;
+drop index customers_id_name_index;
+create index customers_id_name_index on customers (customers_id, name);
+CREATE INDEX customers_name_index ON customers (name);
+
+select /*+ INDEX(customers customers_id_name_index) */ * from customers;
+
+drop view CUSTOMERS_VIEW;
+CREATE VIEW CUSTOMERS_VIEW AS
+SELECT name, age
+FROM  CUSTOMERS
+WHERE age IS NOT NULL
+WITH CHECK OPTION;
+
+select * from CUSTOMERS_VIEW;
+
+/*
+SELECT customers_id as ID, NAME, AGE, ADDRESS, SALARY
+FROM CUSTOMERS
+HAVING AGE >= 2;
+*/
+
+SAVEPOINT SP1;
