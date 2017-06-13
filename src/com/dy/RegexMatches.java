@@ -1,5 +1,6 @@
 package com.dy;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,5 +54,28 @@ public class RegexMatches {
 //        double c = (double) 4 /9;
 //        int d = 4/9;
 //        System.out.println(d);
+
+        String url = "http://www.betsystem.com/index.php?id=5&lang=no";
+        String url2 = "http://www.betsystem.com/index.php?lang=no&id=15";
+        String pattern = "(.*)index\\.php\\?(id=|lang=)(.*)&(lang=|id=)(.*)";
+        Pattern p = Pattern.compile(pattern);
+        ArrayList<String> list = new ArrayList<String>();
+        list.add(url);
+        list.add(url2);
+
+        for(String s : list){
+            Matcher m = p.matcher(s);
+            if(m.find()){
+                System.out.println("match is=" + m.group(0));
+                System.out.println("match is=" + m.group(1));
+                System.out.println("match is=" + m.group(2));
+                System.out.println("match is=" + m.group(3));
+                System.out.println("match is=" + m.group(4));
+                System.out.println("match is=" + m.group(5));
+                System.out.println("#######");
+            }else{
+                System.out.println("No match!");
+            }
+        }
     }
 }
