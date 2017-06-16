@@ -71,15 +71,6 @@ public class WhichCountriesExport {
                 System.out.println("country=" + country);
             }
         }
-//        int j = 0;
-//        for(int i=0; i<=values.size();i++){
-//            int max = 0;
-//            if(values.get(i) > max){
-//                max = values.get(i);
-//                j = i;
-//            }
-//        }
-//        System.out.println("First economic=" + countries.get(j));
     }
     public void whoExportsCoffee() {
         FileResource fr = new FileResource();
@@ -87,13 +78,35 @@ public class WhichCountriesExport {
         listExporters(parser, "coffee");
     }
 
+    public void whoExportsCocoa() {
+        FileResource fr = new FileResource();
+        CSVParser parser = fr.getCSVParser();
+        listExporters(parser, "cocoa");
+    }
+
+    public void exporterCottonAndFlowers(CSVParser parser) {
+        for (CSVRecord record : parser) {
+            String export = record.get("Exports");
+            //Check if it contains exportOfInterest
+            if (export.contains("cotton") && export.contains("flower")) {
+                String country = record.get("Country");
+                String value = record.get("Value (dollars)");
+                String amount = "$999,999,999";
+                System.out.println(country + ":" + export + " " + value);
+            }
+        }
+    }
     public static void main(String arg[]){
         FileResource fileResource = new FileResource();
         CSVParser parser = fileResource.getCSVParser();
         WhichCountriesExport whichCountriesExport = new WhichCountriesExport();
+
 //        whichCountriesExport.listExporters(parser, "gold");
 //        // whichCountriesExport.exporterFishAndNuts(parser);
 //        whichCountriesExport.findCountry(parser, "Nauru");
         whichCountriesExport.bigValueCountry(parser);
+
+        // whichCountriesExport.exporterCottonAndFlowers(parser);
+        // whichCountriesExport.whoExportsCocoa();
     }
 }
