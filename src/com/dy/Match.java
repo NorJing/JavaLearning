@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by Percy on 19/06/17.
  */
-public class Match implements Comparable<Match>{
+public class Match {
     private int matchId;
     private String homeTeam;
     private String awayTeam;
@@ -48,14 +48,5 @@ public class Match implements Comparable<Match>{
 
     public void setMatchDate(Date matchDate){
         this.matchDate = matchDate;
-    }
-
-    @Override
-    public int compareTo(Match other) {
-        try{
-            return Integer.compare(other.matchId, this.matchId);
-        }catch (Exception e){
-            return -100;
-        }
     }
 }
