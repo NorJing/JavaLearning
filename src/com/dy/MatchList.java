@@ -50,6 +50,23 @@ public class MatchList {
                     match.getAwayTeam() + " " + dateFormat.format(match.getMatchDate()));
         }
 
+//        Collections.sort(matchList.getMatchList(), new Comparator<Match>() {
+//            @Override
+//            public int compare(Match o1, Match o2) {
+//                int value = -1;
+//                if(o1.getMatchDate().compareTo(o2.getMatchDate()) > 0){
+//                    value = 1;
+//                    return value;
+//                }else if(o1.getMatchDate().compareTo(o2.getMatchDate()) == 0){
+//                    if(o1.getMatchId() > o2.getMatchId()){
+//                        value = 1;
+//                        return value;
+//                    }
+//                }
+//                return value;
+//            }
+//        });
+
         // Bulb sort
         for(int i = 0; i < matchList.getMatchList().size() - 1; i++){
             for(int j = 1; j < matchList.getMatchList().size() - i; j++){

@@ -150,7 +150,7 @@ public class AllGenesStored {
 //        float result = allGenesStored.cgRatio(test);
 //        System.out.println(result);
 
-        FileResource fileResource = new FileResource("/Users/dongyan/IdeaProjectsNew/JavaLearning2/data/data");
+        FileResource fileResource = new FileResource("data/data");
         String dna = fileResource.asString();
         dna = dna.toUpperCase();
         // dna = "ATGATCTAATTTATGCTGCAACGGTGAAGA";
