@@ -1,9 +1,7 @@
 package com.dy;
 
-import java.util.Date;
-
 /**
- * Created by dongyan on 19/06/17.
+ * Created by Percy on 19/06/17.
  */
 public class Match {
     private int matchId;
