@@ -1,15 +1,18 @@
 package com.dy;
 
+import java.util.Comparator;
+import java.util.Date;
+
 /**
  * Created by Percy on 19/06/17.
  */
-public class Match {
+public class Match implements Comparable<Match>{
     private int matchId;
     private String homeTeam;
     private String awayTeam;
-    private String matchDate;
+    private Date matchDate;
 
-    public Match(int matchId, String homeTeam, String awayTeam, String matchDate){
+    public Match(int matchId, String homeTeam, String awayTeam, Date matchDate){
         this.matchId = matchId;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
@@ -40,11 +43,20 @@ public class Match {
         this.awayTeam = awayTeam;
     }
 
-    public String getMatchDate(){
+    public Date getMatchDate(){
         return matchDate;
     }
 
-    public void setMatchDate(String matchDate){
+    public void setMatchDate(Date matchDate){
         this.matchDate = matchDate;
+    }
+
+    @Override
+    public int compareTo(Match other) {
+        try{
+            return Integer.compare(other.matchId, this.matchId);
+        }catch (Exception e){
+            return -100;
+        }
     }
 }

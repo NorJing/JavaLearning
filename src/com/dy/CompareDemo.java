@@ -17,7 +17,7 @@ public class CompareDemo {
     public static void main(String avgs[]){
         Animal one = new Animal(10);
         Animal another = new Animal(5);
-        System.out.println("animal one compares animal two=" + one.compareTo(another));
+        System.out.println("animal one is bigger than animal two: " + one.compareTo(another));
         // test null return -100
         // System.out.println("animal two compares animal one=" + another.compareTo(null));
         System.out.println("animal two compares animal one=" + CompareDemo.AnimalAgeComparator.compare(another, one));
