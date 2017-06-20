@@ -35,10 +35,6 @@ public class MatchList {
         matchList.getMatchList().add(match2);
         matchList.getMatchList().add(match3);
 
-        for(int i = 0; i < matchList.getMatchList().size(); i++){
-            System.out.println(matchList.getMatchList().get(i).getMatchDate());
-        }
-
         for(Match match : matchList.getMatchList()){
             System.out.println(match.getMatchDate());
         }
