@@ -1,5 +1,7 @@
 package com.dy;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -48,5 +50,13 @@ public class Match {
 
     public void setMatchDate(Date matchDate){
         this.matchDate = matchDate;
+    }
+
+    public static Date parseDate(String date){
+        try {
+            return new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(date);
+        }catch (ParseException e){
+            return null;
+        }
     }
 }
